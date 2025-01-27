@@ -10,17 +10,21 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Введите строки:");
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> list = new ArrayList<>();
         String stroka = sc.nextLine();
-        while (!stroka.isEmpty()) {
-            list.add(stroka);
-            stroka = sc.nextLine();
-        }
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
 
-        
+        printStrings(stroka, sc);
+
+        ArrayList<Book> books = addBooksInitial();
+
+        System.out.println("Введите автора:");
+        String author = sc.nextLine();
+        printByAuthor(books, author);
+
+        sc.close();
+
+    }
+
+    private static ArrayList<Book> addBooksInitial() {
         ArrayList<Book> books = new ArrayList<>(){{
         add(new Book("Муму", "Тургенев"));
         add(new Book("Война и мир", "Толстой"));
@@ -35,10 +39,21 @@ public class Main {
 //        books.add(new Book("Братья Карамазовы", "Достоевский"));
 //        books.add(new Book("Каштанка", "Чехов"));
 //        books.add(new Book("Мастер и Маргарита", "Булгаков"));
+        return books;
+    }
 
+    private static void printStrings(String stroka, Scanner sc) {
+        ArrayList<String> list = new ArrayList<>();
+        while (!stroka.isEmpty()) {
+            list.add(stroka);
+            stroka = sc.nextLine();
+        }
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+    }
 
-        System.out.println("Введите автора:");
-        String author = sc.nextLine();
+    private static void printByAuthor(ArrayList<Book> books, String author) {
         ArrayList<Book> booksByAuthor = Book.getBooksByAuthor(books, author);
 
         if (booksByAuthor.isEmpty()) {
@@ -49,8 +64,5 @@ public class Main {
                 System.out.println("- " + book.name);
             }
         }
-
-        sc.close();
-
     }
 }
