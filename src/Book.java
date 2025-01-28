@@ -3,6 +3,8 @@
 // который возвращает список книг, заданного автора.
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Book {
@@ -14,13 +16,15 @@ public class Book {
         this.author = author;
     }
 
-    public static ArrayList<Book> getBooksByAuthor(ArrayList<Book> books, String author) {
-        ArrayList<Book> booksByAuthor = new ArrayList<>();
-        for (Book book : books) {
+    public static <T extends Book> @NotNull ArrayList<T> getBooksByAuthor(@NotNull ArrayList<T> books, String author) {
+        ArrayList<T> booksByAuthor = new ArrayList<>();
+        for (T book : books) {
             if (book.author.equalsIgnoreCase(author)) {
                 booksByAuthor.add(book);
             }
         }
         return booksByAuthor;
     }
+
 }
+

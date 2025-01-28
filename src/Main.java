@@ -3,6 +3,8 @@
 // пока пользователь не введет пустую строку. Затем распечатать все введенные строки
 // из получившегося ArrayList (используем цикл и метод get(), не toString)
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,7 +26,8 @@ public class Main {
 
     }
 
-    private static ArrayList<Book> addBooksInitial() {
+
+      static @NotNull ArrayList<Book> addBooksInitial() {
         ArrayList<Book> books = new ArrayList<>(){{
         add(new Book("Муму", "Тургенев"));
         add(new Book("Война и мир", "Толстой"));
@@ -42,7 +45,7 @@ public class Main {
         return books;
     }
 
-    private static void printStrings(String stroka, Scanner sc) {
+    private static void printStrings(@NotNull String stroka, Scanner sc) {
         ArrayList<String> list = new ArrayList<>();
         while (!stroka.isEmpty()) {
             list.add(stroka);
